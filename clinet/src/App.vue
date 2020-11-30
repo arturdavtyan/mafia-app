@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 style="width: 200px; background: lightgreen; word-break: break-all">Header: Hello World</h1>
+    <h1 style="background: darkgreen; color: white; text-align: center; font-size: 55px; padding: 40px 0">Header: Hello World</h1>
   </div>
 </template>
 
