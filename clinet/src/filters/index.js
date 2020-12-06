@@ -1,9 +1,12 @@
 import Vue from 'vue'
 
-Vue.filter('uppercase', value => {
-    if (!value) {
-        return ''
-    }
+// Utils
+import { Capitalize } from '@/utils/'
 
-    return value.toUpperCase()
+Vue.filter('uppercase', value => {
+  if (!value) return ''
+
+  return String(value).toUpperCase()
 })
+
+Vue.filter('capitalize', Capitalize)
