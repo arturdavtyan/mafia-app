@@ -6,11 +6,9 @@
 </template>
 
 <script>
-import mRooms from '@/components/rooms'
-
 export default {
   components: {
-    mRooms
+    mRooms: () => import('@/components/rooms')
   },
   data () {
     return {
@@ -30,14 +28,10 @@ export default {
   },
   created () {
     this.$store.commit('Game/SetBackRoute', { name: 'main' })
-    setTimeout(() => {
-      this.sett()
-    }, 6000);
+
+    this.socket.on('rooms', data => {
+      this.rooms = data
+    })
   },
-  methods: {
-    sett () {
-      this.socket.emit('click', {})
-    }
-  }
 }
 </script>

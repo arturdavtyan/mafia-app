@@ -6,11 +6,9 @@
 </template>
 
 <script>
-import mNavigation from '@/components/navigation'
-
 export default {
   components: {
-    mNavigation
+    mNavigation: () => import('@/components/navigation')
   },
   data () {
     return {

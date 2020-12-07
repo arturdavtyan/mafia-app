@@ -61,7 +61,7 @@ export default {
     window.addEventListener('resize', this.ChangeWindowSize)
   },
   mounted () {
-    this.ClearLoading()
+    // this.ClearLoading()
   },
   destroyed() {
     window.removeEventListener('resize', this.ChangeWindowSize)
