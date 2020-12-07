@@ -8,14 +8,13 @@ const rooms = [
 ]
 
 const listen = server => {
-  const io = socketIo(server, {
-    cors: 'http://localhost:5000'
-  })
+  const io = socketIo(server, { cors: 'http://localhost:5000' })
   const roomId = '123456'
+
   io.on('connection', socket => {
     console.log('- - - Connected - - -')
 
-    // socket.on('', )
+    socket.emit('rooms', rooms)
 
     socket.on('click', () => {
       console.log('clicked')
