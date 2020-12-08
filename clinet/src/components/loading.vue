@@ -4,20 +4,17 @@
     <div class="box box-2"></div>
     <div class="box box-3"></div>
     <div class="box box-4"></div>
-    <!-- <div class="loading__inner">
-      <div class="box top">
-
-      </div>
-      <div class="box bottom"></div>
-    </div> -->
+    <img class="app-logo" src="../assets/images/Mafia_logo.png" alt="logo">
   </div>
 </template>
 
 <style lang="scss" scoped>
+$colorRed: #4d120a;
 $from: 2px;
-$to: 8px;
+$to: 9px;
 
 .loading {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   position: absolute;
@@ -27,6 +24,15 @@ $to: 8px;
   width: 100%;
   height: 100%;
   
+  .app-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2000;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+  }
   .box {
     flex-grow: 1;
     flex-basis: 50%;
@@ -37,8 +43,8 @@ $to: 8px;
         -45deg,
         transparent 0px,
         transparent $from,
-        #842113 $from,
-        #842113 $to
+        $colorRed $from,
+        $colorRed $to
       );
     }
     &.box-2 {
@@ -46,8 +52,8 @@ $to: 8px;
         45deg,
         transparent 0px,
         transparent $from,
-        #842113 $from,
-        #842113 $to
+        $colorRed $from,
+        $colorRed $to
       );
     }
     &.box-3 {
@@ -55,8 +61,8 @@ $to: 8px;
         -135deg,
         transparent 0px,
         transparent $from,
-        #842113 $from,
-        #842113 $to
+        $colorRed $from,
+        $colorRed $to
       );
     }
     &.box-4 {
@@ -64,27 +70,10 @@ $to: 8px;
         135deg,
         transparent 0px,
         transparent $from,
-        #842113 $from,
-        #842113 $to
+        $colorRed $from,
+        $colorRed $to
       );
     }
   }
-
-  // .loading__inner {
-  //   position: relative;
-  //   width: 100%;
-  //   height: 100%;
-    
-  //   .box {
-  //     width: 100%;
-  //     height: 50%;
-  //   }
-  //   .top {
-  //     background: #000;
-  //   }
-  //   .bottom {
-  //     background: red;
-  //   }
-  // }
 }
 </style>

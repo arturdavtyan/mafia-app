@@ -61,7 +61,7 @@ export default {
     window.addEventListener('resize', this.ChangeWindowSize)
   },
   mounted () {
-    // this.ClearLoading()
+    this.ClearLoading()
   },
   destroyed() {
     window.removeEventListener('resize', this.ChangeWindowSize)
@@ -72,7 +72,7 @@ export default {
       this.bodyHeight = window.innerHeight
     },
     ClearLoading () {
-      setTimeout(() => this.loading = false, 4000)
+      setTimeout(() => this.loading = false, 4400)
     },
     RedirectToMain () {
       if (!this.NickName) this.$router.push({ name: 'main' }).catch(() => {})
