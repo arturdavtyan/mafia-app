@@ -13,6 +13,9 @@ import router from './router'
 // Vuex Store
 import store from './store/'
 
+// Socket.io
+import './socket'
+
 // Getting data from local storage
 import { GetDataFromLocalStorage } from './utils/'
 const { nick_name } = GetDataFromLocalStorage()

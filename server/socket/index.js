@@ -1,23 +1,49 @@
 const socketIo = require('socket.io')
+const { generator } = require('../utils/')
 
 const rooms = [
-  { id: 1, number: '125548' },
-  { id: 2, number: '226699' },
-  { id: 3, number: '325478' },
-  { id: 4, number: '991452' },
+  // {
+  //   uuid: 's45asds5kuDkO541', // server
+  //   number: '125548',         // server
+  //   password: '',             // client
+  //   maxPlayer: 10,            // client
+  //   isReady: false,           // server
+  //   admin: {},                // client
+  //   players: [                // server
+  //     {
+  //       uuid: 'asdadhj',
+  //       nickname: 'John',
+  //       type: 'don',
+  //       reprimand: 0
+  //     }
+  //   ]
+  // },
 ]
 
 const listen = server => {
-  const io = socketIo(server, { cors: 'http://localhost:5000' })
+  const io = socketIo(server, { cors: { origin: '*' } })
   const roomId = '123456'
 
   io.on('connection', socket => {
     console.log('- - - Connected - - -')
 
+    
+    // User connected
     socket.emit('rooms', rooms)
 
-    socket.on('click', () => {
-      console.log('clicked')
+    // Creating new room
+    socket.on('newRoom', room => {
+      const newRoom = {
+        ...room,
+        uuid: generator(20),
+        isReady: false,
+        number: generator(6, true),
+        players: []
+      }
+
+      rooms.push(newRoom)
+      io.emit('rooms', rooms)
+      console.log('added')
     })
 
     socket.on('join', user => {

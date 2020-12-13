@@ -1,9 +1,14 @@
 <template>
   <div class="rooms">
+    <div v-if="!rooms.length" class="no-rooms">
+      <h4 class="no-rooms__title">Այս պահին սենյակներ չկան</h4>
+      <router-link class="no-rooms__link" :to="{ name: 'new-room' }">Ստեղծել նորը</router-link>
+    </div>
     <div
+      v-else
       class="room"
       v-for="room in rooms"
-      :key="room.id">
+      :key="room.uuid">
       <div class="room__inner">
         <div class="card">
           <div class="oval">{{ room.number }}</div>
@@ -24,8 +29,24 @@ export default {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  // padding: 0 10px 0;
+  
+  .no-rooms {
+    width: 100%;
+    padding: 30px 0;
 
+    .no-rooms__title {
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .no-rooms__link {
+      display: block;
+      width: 100%;
+      font-size: 14px;
+      color: #0c398d;
+      text-align: center;
+    }
+  }
   .room {
     flex-grow: 1;
     flex-basis: 25%;

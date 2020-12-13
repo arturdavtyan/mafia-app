@@ -31,6 +31,7 @@ $to: 9px;
     z-index: 2000;
     transform: translate(-50%, -50%);
     width: 60%;
+    max-width: 360px;
     height: auto;
   }
   .box {
