@@ -3,5 +3,6 @@
 export default {
   NickName: null,
   BackRoute: null,
-  Socket: null
+  Socket: null,
+  Rooms: []
 }

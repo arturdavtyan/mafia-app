@@ -3,35 +3,36 @@
     <!-- Loading -->
     <m-loading v-if="loading"/>
 
-    <!-- Modal -->
-    <m-modal
-      v-if="isOpenModal || !Boolean(NickName)"
-      :hide-close-btn="!Boolean(NickName)"
-      @close="isOpenModal = false"
-    >
-      <m-change-nickname/>
-    </m-modal>
+    <template v-else>
+      <!-- Modal -->
+      <m-modal
+        v-if="isOpenModal || !Boolean(NickName)"
+        :hide-close-btn="!Boolean(NickName)"
+        @close="isOpenModal = false"
+      >
+        <m-change-nickname/>
+      </m-modal>
 
-    <!-- Header -->
-    <m-header
-      v-if="NickName"
-      :nickname="NickName"
-      @open="isOpenModal = true" />
+      <!-- Header -->
+      <m-header
+        v-if="NickName"
+        :nickname="NickName"
+        @open="isOpenModal = true" />
 
-    <!-- Content -->
-    <div
-      v-if="NickName"
-      class="content">
-      <div class="content__inner">
-        <router-view />
+      <!-- Content -->
+      <div
+        v-if="NickName"
+        class="content">
+        <div class="content__inner">
+          <router-view />
+        </div>
       </div>
-    </div>
-      
+    </template>
   </div>
 </template>
 
 <script>
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 
 export default {
   name: 'App',
@@ -55,7 +56,7 @@ export default {
     }
   },
   created() {
-    this.$store.commit('Game/SetSocket', io('http://localhost:5000'))
+    // this.$store.commit('Game/SetSocket', io('http://192.168.5.5:5000'))
     this.RedirectToMain()
     this.ChangeWindowSize()
     window.addEventListener('resize', this.ChangeWindowSize)
