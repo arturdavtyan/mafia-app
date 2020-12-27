@@ -30,6 +30,11 @@ const router = new VueRouter({
       name: 'new-room',
       component: () => import('./views/newRoom/Index.vue')
     },
+    {
+      path: '/room/:uuid',
+      name: 'room',
+      component: () => import('./views/room/Index.vue')
+    },
 
 
     {

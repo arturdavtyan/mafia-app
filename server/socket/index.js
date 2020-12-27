@@ -1,5 +1,7 @@
 const socketIo = require('socket.io')
 const { generator } = require('../utils/')
+const { JoinPlayer, GetCurrentPlayer, PlayerLeave, GetRoomPlayers } = require('../utils/players')
+const { CreateRoom, GetRooms } = require('../utils/rooms')
 
 const rooms = [
   // {
@@ -22,38 +24,54 @@ const rooms = [
 
 const listen = server => {
   const io = socketIo(server, { cors: { origin: '*' } })
-  const roomId = '123456'
 
   io.on('connection', socket => {
     console.log('- - - Connected - - -')
-
     
-    // User connected
-    socket.emit('rooms', rooms)
+    // Player connected
+    io.emit('rooms', GetRooms())
+
+    // Player join the room
+    socket.on('joinRoom', ({ nickname, room }) => {
+      const player = JoinPlayer(socket.id, nickname, room)
+
+      console.log(player)
+
+      socket.join(room)
+
+      const playersCount = GetRoomPlayers(room).length
+
+      io.to(room).emit('playersCount', playersCount)
+    })
 
     // Creating new room
-    socket.on('newRoom', room => {
-      const newRoom = {
-        ...room,
-        uuid: generator(20),
-        isReady: false,
-        number: generator(6, true),
-        players: []
-      }
+    socket.on('newRoom', ({ password, maxPlayer }) => {
+      const { rooms, room } = CreateRoom(socket.id, password, maxPlayer)
+      // const newRoom = {
+      //   ...room,
+      //   uuid: generator(20),
+      //   isReady: false,
+      //   number: generator(6, true),
+      //   players: []
+      // }
 
-      rooms.push(newRoom)
+      // rooms.push(newRoom)
       io.emit('rooms', rooms)
+      socket.emit('createdRoom', room)
       console.log('added')
     })
 
-    socket.on('join', user => {
-      console.log('User joined')
+    // socket.on('join', user => {
+    //   console.log('User joined')
 
-      socket.join(roomId)
-      socket.to(roomId).emit('userJoined', user)
+    //   socket.join(roomId)
+    //   socket.to(roomId).emit('userJoined', user)
+    // })
+
+    socket.on('disconnect', () => {
+      const { player, total } = PlayerLeave(socket.id)
+      io.to(player.room).emit('playersCount', total)
     })
-
-    // socket.on('')
   })
 }
 
