@@ -24,7 +24,9 @@ export default {
       payload: {
         password: '',
         maxPlayer: '',
-        admin: {}
+        admin: {
+          
+        }
       }
     }
   },
