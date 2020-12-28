@@ -19,9 +19,26 @@ const CreateRoom = (playerId, password, maxPlayer) => {
 }
 
 // Get rooms
-const GetRooms = () => rooms
+const GetRooms = () => rooms.map(room => {
+  return {
+    ...room,
+    password: null
+  }
+})
+
+// Get room by number
+const GetRoomByNumber = number => rooms.find(room => room.number === number)
+
+// Check password for room
+const CheckPassword = (number, password) => {
+  const findedRoom = GetRoomByNumber(number)
+  
+  return findedRoom && password === findedRoom.password
+
+}
 
 module.exports = {
   CreateRoom,
-  GetRooms
+  GetRooms,
+  CheckPassword
 }

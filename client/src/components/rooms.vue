@@ -7,12 +7,18 @@
     <div
       v-else
       class="room"
-      v-for="room in rooms"
-      :key="room.uuid">
-      <div class="room__inner">
+      v-for="room in trnasformedRooms"
+      :key="room.uuid" >
+      <div
+        class="room__inner"
+        :class="{ 'clicked': room.isClicked }"
+        @click="ClickToCard(room)" >
         <div class="card">
           <div class="oval">{{ room.number }}</div>
         </div>
+      </div>
+      <div class="room__inner__back">
+
       </div>
     </div>
   </div>
@@ -20,7 +26,46 @@
 
 <script>
 export default {
-  props: ['rooms']
+  props: ['rooms'],
+  data () {
+    return {
+      trnasformedRooms: [],
+      password: '',
+      
+      socket: this.$store.getters['Game/GetSocket']
+    }
+  },
+  created () {
+    this.trnasformedRooms = this.rooms.map(this.TransformRoom)
+    this.socket.on('wrongPassword', () => alert('wrong pass'))
+  },
+  beforeDestroy () {
+    this.socket.off('wrongPassword')
+  },
+  methods: {
+    ClickToCard ({ number }) {
+      // this.trnasformedRooms = this.trnasformedRooms.map(this.TransformRoom)
+      // this.Click(e)
+      // console.log(e)
+      const nickname = this.$store.getters['Game/GetNickName']
+      this.socket.emit('joinRoom', { nickname, room: number, password: this.password })
+    },
+
+    Click (id) {
+      const findedRoom = this.trnasformedRooms.find(item => item.uuid === id)
+      if (findedRoom) {
+        findedRoom.isClicked = true
+      }
+    },
+    
+    // Transform functions
+    TransformRoom (item) {
+      return {
+        ...item,
+        isClicked: false
+      }
+    }
+  }
 }
 </script>
 
@@ -48,26 +93,45 @@ export default {
     }
   }
   .room {
+    // position: relative;
     flex-grow: 1;
     flex-basis: 25%;
-    min-width: 120px;
+    min-width: 130px;
     height: 180px;
     padding: 10px;
 
+    // .room__inner__back {
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   z-index: 9;
+    //   width: 100%;
+    //   height: 100%;
+    //   background-color: #fff;
+    // }
     .room__inner {
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      // z-index: 10;
       width: 100%;
       height: 100%;
       padding: 12px;
       border-radius: $radius;
       background-image: repeating-linear-gradient(90deg, $red 0%, $red 50%, $black 50%, $black 100%);
       box-shadow: 0 0 10px 1px #303030;
+      transition: 0.8s ease;
 
+      &.clicked {
+        transform: rotateY(180deg);
+      }
       .card {
         position: relative;
         width: 100%;
         height: 100%;
         background-image: repeating-linear-gradient(-90deg, $red 0%, $red 50%, $black 50%, $black 100%);
         border-radius: $radius;
+        pointer-events: none;
 
         .oval {
           position: absolute;
@@ -87,6 +151,7 @@ export default {
           border-left-color: $red;
           border-top-color: $red;
           border-style: solid;
+          pointer-events: none;
         }
       }
     }

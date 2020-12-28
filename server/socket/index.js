@@ -1,7 +1,7 @@
 const socketIo = require('socket.io')
 const { generator } = require('../utils/')
 const { JoinPlayer, GetCurrentPlayer, PlayerLeave, GetRoomPlayers } = require('../utils/players')
-const { CreateRoom, GetRooms } = require('../utils/rooms')
+const { CreateRoom, GetRooms, CheckPassword } = require('../utils/rooms')
 
 const rooms = [
   // {
@@ -22,6 +22,8 @@ const rooms = [
   // },
 ]
 
+let i = 0;
+
 const listen = server => {
   const io = socketIo(server, { cors: { origin: '*' } })
 
@@ -30,12 +32,19 @@ const listen = server => {
     
     // Player connected
     io.emit('rooms', GetRooms())
-
+    
     // Player join the room
-    socket.on('joinRoom', ({ nickname, room }) => {
+    socket.on('joinRoom', ({ nickname, room, password }) => {
+      const isValid = CheckPassword(room, password)
+      
+      if (!isValid) {
+        socket.emit('wrongPassword')
+        console.log(++i)
+        return
+      }
       const player = JoinPlayer(socket.id, nickname, room)
 
-      console.log(player)
+      // console.log(player)
 
       socket.join(room)
 
@@ -69,7 +78,11 @@ const listen = server => {
     // })
 
     socket.on('disconnect', () => {
-      const { player, total } = PlayerLeave(socket.id)
+      const leftPlayer = PlayerLeave(socket.id)
+
+      if (!leftPlayer) { return }
+
+      const { player, total } = leftPlayer
       io.to(player.room).emit('playersCount', total)
     })
   })
