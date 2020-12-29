@@ -1,5 +1,14 @@
 <template>
   <div class="rooms">
+    <!-- Modal -->
+    <m-modal
+      v-if="isOpenModal"
+      @close="isOpenModal = false"
+    >
+      <m-enter-password
+      :data="data" />
+    </m-modal>
+
     <div v-if="!rooms.length" class="no-rooms">
       <h4 class="no-rooms__title">Այս պահին սենյակներ չկան</h4>
       <router-link class="no-rooms__link" :to="{ name: 'new-room' }">Ստեղծել նորը</router-link>
@@ -26,37 +35,49 @@
 
 <script>
 export default {
+  components: {
+    mEnterPassword: () => import('@/components/enterPassword.vue')
+  },
   props: ['rooms'],
   data () {
     return {
       trnasformedRooms: [],
       password: '',
-      
-      socket: this.$store.getters['Game/GetSocket']
+
+      isOpenModal: false,
+      data: {},
+    }
+  },
+  watch: {
+    rooms (arr) {
+      this.trnasformedRooms = arr.map(this.TransformRoom)
     }
   },
   created () {
     this.trnasformedRooms = this.rooms.map(this.TransformRoom)
-    this.socket.on('wrongPassword', () => alert('wrong pass'))
+    // this.socket.on('wrongPassword', () => alert('wrong pass'))
   },
-  beforeDestroy () {
-    this.socket.off('wrongPassword')
-  },
+  // beforeDestroy () {
+  //   this.socket.off('wrongPassword')
+  // },
   methods: {
     ClickToCard ({ number }) {
+      // console.log(number)
       // this.trnasformedRooms = this.trnasformedRooms.map(this.TransformRoom)
       // this.Click(e)
       // console.log(e)
       const nickname = this.$store.getters['Game/GetNickName']
-      this.socket.emit('joinRoom', { nickname, room: number, password: this.password })
+      // this.socket.emit('joinRoom', { nickname, room: number, password: this.password })
+      this.isOpenModal = true
+      this.data = { nickname, room: number }
     },
 
-    Click (id) {
-      const findedRoom = this.trnasformedRooms.find(item => item.uuid === id)
-      if (findedRoom) {
-        findedRoom.isClicked = true
-      }
-    },
+    // Click (id) {
+    //   const findedRoom = this.trnasformedRooms.find(item => item.uuid === id)
+    //   if (findedRoom) {
+    //     findedRoom.isClicked = true
+    //   }
+    // },
     
     // Transform functions
     TransformRoom (item) {

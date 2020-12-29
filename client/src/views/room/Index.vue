@@ -12,7 +12,7 @@ export default {
     }
   },
   created () {
-    // this.$store.commit('Game/SetBackRoute', { name: 'main' })
+    this.$store.commit('Game/SetBackRoute', { name: 'main' })
   },
   methods: {
     // NewRoom () {

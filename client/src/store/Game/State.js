@@ -6,5 +6,7 @@ export default {
   Socket: null,
   Rooms: [],
 
-  Room: {}
+  Room: null,
+  PlayerUuid: null,
+
 }
