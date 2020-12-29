@@ -23,20 +23,27 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  created () {
+    document.querySelector('body').style.overflow = 'hidden'
+  },
+  beforeDestroy () {
+    document.querySelector('body').style.overflow = 'auto'
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 100;
   width: 100%;
   height: 100%;
   padding: 0 20px;
   background: #000000dd;
+  // overflow: hidden;
 
   .modal-container {
     position: relative;

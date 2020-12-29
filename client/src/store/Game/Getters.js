@@ -6,5 +6,6 @@ export default {
   GetSocket (state) { return state.Socket },
   GetRooms (state) { return state.Rooms },
 
-  IsAdmin (state) { return !!state.Room.admin }
+  IsAdmin (state) { return !!state.Room.admin },
+  GetPlayer (state) { return state.PlayerUuid }
 }
