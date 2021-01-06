@@ -16,9 +16,12 @@ const GetCurrentPlayer = id => players.find(player => player.id === id)
 const PlayerLeave = id => {
   const index = players.findIndex(player => player.id === id)
 
-  if (index !== -1) {
-    return { player: players.splice(index, 1)[0], total: players.length }
-  }
+  if (index === -1) return false
+
+  const { room } = players[index]
+  const roomLength = players.filter(ply => ply.room === room).length - 1
+
+  return { player: players.splice(index, 1)[0], total: roomLength }
 }
 
 // Get room players

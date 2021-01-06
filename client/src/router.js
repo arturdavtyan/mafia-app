@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import store from './store'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -33,7 +35,12 @@ const router = new VueRouter({
     {
       path: '/room/:uuid',
       name: 'room',
-      component: () => import('./views/room/Index.vue')
+      component: () => import('./views/room/Index.vue'),
+      beforeEnter (to, from, next) {
+        const isPlayer = !!store.getters['Game/GetPlayer']
+
+        isPlayer ? next() : next({ name: 'main' })
+      }
     },
 
 

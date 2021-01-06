@@ -1,24 +1,49 @@
 <template>
   <div class="new-room">
-    Room
+    <template v-if="!isReady">
+      <waiting-bar />
+    </template>
+    <template v-else>
+      ready
+      <!-- <div @click="Start">
+        <primary-button>Open</primary-button>
+      </div> -->
+    </template>
   </div>
 </template>
 
 <script>
 export default {
+  components: {
+    waitingBar: () => import('@/components/waitingBar')
+  },
   data () {
     return {
       socket: this.$store.getters['Game/GetSocket'],
     }
   },
+  computed: {
+    isReady () {
+      console.log(this.$store.getters['Game/IsReadyRoom'])
+      return this.$store.getters['Game/IsReadyRoom']
+    }
+  },
   created () {
     this.$store.commit('Game/SetBackRoute', { name: 'main' })
   },
+  beforeRouteLeave (to, from, next) {
+    this.$dialog.confirm({ text: 'Ցանկանու՞մ եք դուրս գալ խաղից' })
+    .then(res => {
+      if (res) {
+        this.socket.emit('leaveRoom')
+        this.$store.commit('Game/ResetGame')
+        next()
+      }
+    })
+  },
   methods: {
-    // NewRoom () {
-    //   this.socket.emit('newRoom', this.payload)
-    // }
-  }
+    
+  },
 }
 </script>
 

@@ -26,6 +26,9 @@ store.commit('Game/SetNickName', nick_name)
 // Vue filters
 import filters from './filters/'
 
+// Custom dialog
+import './dialog'
+
 Vue.config.productionTip = false
 
 new Vue({

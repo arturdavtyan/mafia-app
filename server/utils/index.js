@@ -18,6 +18,56 @@ const generator = (length, isOnlyNum) => {
   return result
 }
 
+const shuffle = array => {
+  let currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex--);
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+const getPlayersRole = (c, color) => {
+  const _c = parseInt(c, 10)
+
+  if (isNaN(_c) || !_c || (color !== 'red' && color !== 'black' )) return []
+
+  const players = [ color === 'red' ? 'sherif' : 'don']
+  
+  for (let i = 0; i < _c - 1; i++) players.push(color)
+
+  return players
+}
+
+const playerCardGenerator = playerCount => {
+  const count = parseInt(playerCount, 10)
+
+  if (isNaN(count)) return []
+  
+  const blackPlayers = Math.round(count * 0.3)
+  const redPlayers = count - blackPlayers
+  const playerRols = [
+    ...getPlayersRole(blackPlayers, 'black'),
+    ...getPlayersRole(redPlayers, 'red')
+  ]
+  const mixedCards = shuffle(playerRols)
+  // const mixedCards = shuffle(shuffle(playerRols))
+
+  return mixedCards
+}
+
+console.log(playerCardGenerator(10))
+
 module.exports = {
-  generator
+  generator,
+  playerCardGenerator
 }
