@@ -9,13 +9,13 @@ const CreateRoom = (playerId, password, maxPlayer) => {
     number: generator(6, true),
     password,
     maxPlayer,
-    admin: playerId,
+    // admin: playerId,
     isReady: false
   }
 
   rooms.push(room)
 
-  return { rooms, room }
+  return room
 }
 
 // Get rooms
@@ -37,8 +37,19 @@ const CheckPassword = (number, password) => {
 
 }
 
+const ChangeStatus = roomNumber => {
+  const index = rooms.findIndex(room => room.number === roomNumber)
+
+  if (index === -1) return false
+
+  rooms[index].isReady = true
+  return true
+}
+
 module.exports = {
   CreateRoom,
   GetRooms,
-  CheckPassword
+  CheckPassword,
+  GetRoomByNumber,
+  ChangeStatus
 }

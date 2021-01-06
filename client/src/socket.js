@@ -3,9 +3,10 @@ import io from 'socket.io-client'
 import store from './store/'
 import router from './router'
 
-// const socket = io('http://192.168.5.5:5000')   // my notebook
-const socket = io('http://192.168.2.140:5000')    // PC
-// const socket = io(window.location.origin)      // production
+const socket = io('http://192.168.5.5:5000')    // my notebook
+// const socket = io('http://192.168.2.140:5000')  // PC
+// const socket = io('http://192.168.1.204:5000')     // Home PC
+// const socket = io(window.location.origin)       // production
 
 store.commit('Game/SetSocket', socket)
 
@@ -17,19 +18,24 @@ socket.on('rooms', data => {
 // Room is created
 socket.on('createdRoom', ({ uuid, number, admin, maxPlayer, isReady }) => {
   store.commit('Game/SetRoom', { uuid, number, admin, maxPlayer, isReady })
+  store.commit('Game/SetMaxPlayer', maxPlayer)
+  store.commit('Game/SetRole', 'admin')
+  store.commit('Game/SetPlayer', socket.id)
   router.push({ name: 'room', params: { uuid } }).catch(() => {})
 })
 
-socket.on('sendPlayer', ({ room, id }) => {
-  console.log(room, id)
+socket.on('sendData', ({ player, roomData }) => {
+  const { room, id } = player
+  const { maxPlayer } = roomData
+
+  store.commit('Game/SetMaxPlayer', maxPlayer)
   store.commit('Game/SetRoom', room)
   store.commit('Game/SetPlayer', id)
   router.push({ name: 'room', params: { uuid: room } }).catch(() => {})
 })
 
-// setTimeout(() => {
-//   console.log('emit')
-//   socket.emit('joinRoom', { nickname: store.getters['Game/GetNickName'], room: 1233 })
-// }, 6000);
+socket.on('playersCount', count => {
+  store.commit('Game/SetCurrentPlayerCount', count)
+})
 
-socket.on('playersCount', count => console.log('Count -> ', count))
+socket.on('roomReadyClient', () => store.commit('Game/RoomReady'))

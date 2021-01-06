@@ -1,5 +1,7 @@
 <template>
-  <div class="rooms">
+  <div
+    class="rooms"
+    :class="{ 'flex': !rooms.length }">
     <!-- Modal -->
     <m-modal
       v-if="isOpenModal"
@@ -92,9 +94,11 @@ export default {
 
 <style lang="scss" scoped>
 .rooms {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   width: 100%;
+
+  &.flex { display: flex; }
   
   .no-rooms {
     width: 100%;
@@ -115,9 +119,9 @@ export default {
   }
   .room {
     // position: relative;
-    flex-grow: 1;
-    flex-basis: 25%;
-    min-width: 130px;
+    // flex-grow: 1;
+    // flex-basis: 25%;
+    // min-width: 130px;
     height: 180px;
     padding: 10px;
 

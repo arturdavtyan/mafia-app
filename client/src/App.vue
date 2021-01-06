@@ -4,6 +4,9 @@
     <m-loading v-if="loading"/>
 
     <template v-else>
+      <!-- Confirm dialog -->
+      <m-confirm />
+
       <!-- Modal -->
       <m-modal
         v-if="isOpenModal || !Boolean(NickName)"
@@ -32,22 +35,19 @@
 </template>
 
 <script>
-// import io from 'socket.io-client'
-
 export default {
   name: 'App',
   components: {
     mHeader: () => import('@/components/header'),
     mChangeNickname: () => import('@/components/changeNickName'),
-    mLoading: () => import('@/components/loading')
+    mLoading: () => import('@/components/loading'),
+    mConfirm: () => import('@/components/dialog/confirm')
   },
   data () {
     return {
       isOpenModal: null,
       loading: true,
       bodyHeight: 0,
-
-      // socket: io('http://localhost:5000')
     }
   },
   computed: {
@@ -56,7 +56,6 @@ export default {
     }
   },
   created() {
-    // this.$store.commit('Game/SetSocket', io('http://192.168.5.5:5000'))
     this.RedirectToMain()
     this.ChangeWindowSize()
     window.addEventListener('resize', this.ChangeWindowSize)
@@ -73,7 +72,8 @@ export default {
       this.bodyHeight = window.innerHeight
     },
     ClearLoading () {
-      setTimeout(() => this.loading = false, 4400)
+      // setTimeout(() => this.loading = false, 4400)
+      setTimeout(() => this.loading = false, 800)
     },
     RedirectToMain () {
       if (!this.NickName) this.$router.push({ name: 'main' }).catch(() => {})
