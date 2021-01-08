@@ -4,7 +4,12 @@
       <waiting-bar />
     </template>
     <template v-else>
-      ready
+      <template v-if="role !== 'admin'">
+        <card :role="role" />
+      </template>
+      <template v-else>
+        <!-- L -->
+      </template>
       <!-- <div @click="Start">
         <primary-button>Open</primary-button>
       </div> -->
@@ -15,7 +20,8 @@
 <script>
 export default {
   components: {
-    waitingBar: () => import('@/components/waitingBar')
+    waitingBar: () => import('@/components/waitingBar'),
+    card: () => import('@/components/card')
   },
   data () {
     return {
@@ -24,9 +30,12 @@ export default {
   },
   computed: {
     isReady () {
-      console.log(this.$store.getters['Game/IsReadyRoom'])
       return this.$store.getters['Game/IsReadyRoom']
-    }
+    },
+    role () {
+      return this.$store.getters['Game/GetRole']
+    },
+
   },
   created () {
     this.$store.commit('Game/SetBackRoute', { name: 'main' })

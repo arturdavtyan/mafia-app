@@ -2,7 +2,12 @@ const players = []
 
 // Join player to room
 const JoinPlayer = (id, nickname, room) => {
-  const player = { id, nickname, room }
+  const player = {
+    id,
+    nickname,
+    room,
+    role: null
+  }
 
   players.push(player)
 
@@ -27,9 +32,14 @@ const PlayerLeave = id => {
 // Get room players
 const GetRoomPlayers = room => players.filter(player => player.room === room)
 
+const SetPlayerRole = (id, role) => {
+  GetCurrentPlayer(id).role = role
+}
+
 module.exports = {
   JoinPlayer,
   GetCurrentPlayer,
   PlayerLeave,
-  GetRoomPlayers
+  GetRoomPlayers,
+  SetPlayerRole
 }
