@@ -1,26 +1,7 @@
 const socketIo = require('socket.io')
 const { playerCardGenerator } = require('../utils/')
-const { JoinPlayer, GetCurrentPlayer, PlayerLeave, GetRoomPlayers } = require('../utils/players')
+const { JoinPlayer, SetPlayerRole, PlayerLeave, GetRoomPlayers } = require('../utils/players')
 const { CreateRoom, GetRooms, CheckPassword, GetRoomByNumber, ChangeStatus } = require('../utils/rooms')
-
-// const rooms = [
-//   // {
-//   //   uuid: 's45asds5kuDkO541', // server
-//   //   number: '125548',         // server
-//   //   password: '',             // client
-//   //   maxPlayer: 10,            // client
-//   //   isReady: false,           // server
-//   //   admin: {},                // client
-//   //   players: [                // server
-//   //     {
-//   //       uuid: 'asdadhj',
-//   //       nickname: 'John',
-//   //       type: 'don',
-//   //       reprimand: 0
-//   //     }
-//   //   ]
-//   // },
-// ]
 
 const listen = server => {
   const io = socketIo(server, { cors: { origin: '*' } })
@@ -71,8 +52,12 @@ const listen = server => {
 
       // Players count
       const playersCount = GetRoomPlayers(roomNumber).length
-
       const playerCards = playerCardGenerator(playersCount)
+      
+      GetRoomPlayers(roomNumber).forEach(({ id }, index) => SetPlayerRole(id, playerCards[index]))
+      console.log(GetRoomPlayers(roomNumber))
+
+      GetRoomPlayers(roomNumber).forEach(({ id, role }) => socket.broadcast.to(id).emit('card', role))
 
       io.emit('rooms', GetRooms())
       io.to(roomNumber).emit('roomReadyClient')

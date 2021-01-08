@@ -59,13 +59,10 @@ const playerCardGenerator = playerCount => {
     ...getPlayersRole(blackPlayers, 'black'),
     ...getPlayersRole(redPlayers, 'red')
   ]
-  const mixedCards = shuffle(playerRols)
-  // const mixedCards = shuffle(shuffle(playerRols))
-
-  return mixedCards
+  // return shuffle(playerRols)
+  
+  return shuffle(shuffle(playerRols))
 }
-
-console.log(playerCardGenerator(10))
 
 module.exports = {
   generator,
