@@ -3,8 +3,8 @@ import io from 'socket.io-client'
 import store from './store/'
 import router from './router'
 
-// const socket = io('http://192.168.5.5:5000')     // my notebook
-const socket = io('http://192.168.5.18:5000')       // PC
+const socket = io('http://192.168.5.5:5000')     // my notebook
+// const socket = io('http://192.168.5.18:5000')       // PC
 // const socket = io('http://192.168.1.204:5000')   // Home PC
 // const socket = io(window.location.origin)        // production
 
