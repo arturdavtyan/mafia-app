@@ -40,6 +40,8 @@ export default {
   },
   methods: {
     Rotate () {
+      if (this.isRotate) return
+
       this.isRotate = !this.isRotate
 
       setTimeout(() => {
@@ -105,8 +107,9 @@ $card-radius: 6px;
     height: 30%;
     transform: translate(-50%, -50%);
 
+    > path { fill: #f5dcc8; }
     g {
-      fill: #777;
+      fill: #8f8f8f;
     }
   }
 }
