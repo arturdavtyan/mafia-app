@@ -12,5 +12,7 @@ export default {
   GetPlayer (state) { return state.PlayerUuid },
   GetRole (state) { return state.Role },
   GetRoomNumber (state) { return state.Room.number },
-  IsReadyRoom (state) { return state.IsReadyRoom }
+  IsReadyRoom (state) { return state.IsReadyRoom },
+  GetList (state) { return state.PlayerList },
+  GetWarningCount (state) { return state.WarningCount }
 }

@@ -1,6 +1,6 @@
 const socketIo = require('socket.io')
 const { playerCardGenerator } = require('../utils/')
-const { JoinPlayer, SetPlayerRole, PlayerLeave, GetRoomPlayers } = require('../utils/players')
+const { JoinPlayer, SetPlayerRole, PlayerLeave, GetRoomPlayers, InkrementWarning } = require('../utils/players')
 const { CreateRoom, GetRooms, CheckPassword, GetRoomByNumber, ChangeStatus } = require('../utils/rooms')
 
 const listen = server => {
@@ -58,9 +58,16 @@ const listen = server => {
       console.log(GetRoomPlayers(roomNumber))
 
       GetRoomPlayers(roomNumber).forEach(({ id, role }) => socket.broadcast.to(id).emit('card', role))
+      socket.emit('playerList', GetRoomPlayers(roomNumber))
 
       io.emit('rooms', GetRooms())
       io.to(roomNumber).emit('roomReadyClient')
+    })
+
+    // Inkrement warning
+    socket.on('inkrementWarning', id => {
+      const count = InkrementWarning(id)
+      socket.to(id).emit('inkrementWarning', count)
     })
 
     // Player leave the room

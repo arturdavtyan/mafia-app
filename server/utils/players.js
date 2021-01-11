@@ -6,12 +6,23 @@ const JoinPlayer = (id, nickname, room) => {
     id,
     nickname,
     room,
-    role: null
+    role: null,
+    reprimand: 0
   }
 
   players.push(player)
 
   return player
+}
+
+// Inkrement warning
+const InkrementWarning = id => {
+  const findedIndex = players.findIndex(player => player.id === id)
+
+  if (findedIndex === -1) return
+
+  players[findedIndex].reprimand += 1
+  return players[findedIndex].reprimand
 }
 
 // Get current player
@@ -41,5 +52,6 @@ module.exports = {
   GetCurrentPlayer,
   PlayerLeave,
   GetRoomPlayers,
-  SetPlayerRole
+  SetPlayerRole,
+  InkrementWarning
 }

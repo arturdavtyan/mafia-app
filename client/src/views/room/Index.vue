@@ -1,15 +1,20 @@
 <template>
   <div class="new-room">
-    <player-list :players="players" />
+    <!-- <player-list :players="players" /> -->
     <template v-if="!isReady">
       <waiting-bar />
     </template>
     <template v-else>
       <template v-if="role === 'admin'">
         <!-- Admin -->
-        <!-- <player-list :players="players" /> -->
+        <player-list :players="players" />
       </template>
       <template v-else>
+        <div class="warning-count">
+          <warning-count-icon
+            class="warning-coun__icon"
+            :warningCount="warningCount" />
+        </div>
         <card :role="role" />
       </template>
       <!-- <div @click="Start">
@@ -24,7 +29,8 @@ export default {
   components: {
     waitingBar: () => import('@/components/waitingBar'),
     card: () => import('@/components/card'),
-    playerList: () => import('@/components/playerList/Index')
+    playerList: () => import('@/components/playerList/Index'),
+    warningCountIcon: () => import('@/components/warningCount')
   },
   data () {
     return {
@@ -39,28 +45,10 @@ export default {
       return this.$store.getters['Game/GetRole']
     },
     players () {
-      return [
-        {
-          id: 12,
-          nickname: 'Tigranuhi Yeghyazaryan',
-          reprimand: 0
-        },
-        {
-          id: 13,
-          nickname: 'Hovhannes Sirekanyan',
-          reprimand: 2
-        },
-        {
-          id: 14,
-          nickname: 'Tigranuhi Yeghyazaryan',
-          reprimand: 3
-        },
-        {
-          id: 15,
-          nickname: 'Hovhannes Sirekanyan',
-          reprimand: 2
-        },
-      ]
+      return this.$store.getters['Game/GetList']
+    },
+    warningCount () {
+      return this.$store.getters['Game/GetWarningCount']
     }
   },
   created () {
@@ -83,6 +71,17 @@ export default {
 .new-room {
   padding: 10px 0;
   
+  .warning-count {
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+
+    .warning-coun__icon {
+      width: 100px;
+      height: 100%;
+      margin-right: -20px;
+    }
+  }
   & > div {
     margin-bottom: 20px;
 

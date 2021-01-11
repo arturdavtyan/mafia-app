@@ -12,5 +12,7 @@ export default {
   Role: null,
   MaxPlayers: 0,
   CurrentPlayerCount: 0,
-  IsReadyRoom: false
+  IsReadyRoom: false,
+  PlayerList: [],
+  WarningCount: 0
 }
