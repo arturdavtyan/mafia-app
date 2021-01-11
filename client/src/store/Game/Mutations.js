@@ -18,5 +18,7 @@ export default {
   SetRole (state, payload) { state.Role = payload },
   SetMaxPlayer (state, payload) { state.MaxPlayers = payload },
   SetCurrentPlayerCount (state, payload) { state.CurrentPlayerCount = payload },
-  RoomReady (state) { state.IsReadyRoom = true }
+  RoomReady (state) { state.IsReadyRoom = true },
+  SetList (state, payload) { state.PlayerList = payload },
+  SetWarningCount (state, payload) { state.WarningCount = payload }
 }

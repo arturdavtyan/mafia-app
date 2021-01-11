@@ -6,49 +6,7 @@
     <div class="flex items-center">
       <h2 class="player-list__title short-text">{{ player.nickname }}</h2>
       <div class="warning-count">
-        <span>{{ player.reprimand }}</span>
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 288 319.4"
-          xml:space="preserve">
-          <g id="Layer_2">
-            <g id="Layer_3">
-              <g>
-                <path d="M124.4,247.7c-4.3,0-7.8-3.5-7.8-7.8v-41.6l-15,4l-0.5-58.6l4.1-27.5l11.4-7.7v-88c0-4.3,3.5-7.7,7.8-7.7h139.5
-                  c4.3,0,7.8,3.5,7.8,7.7v219.5c0,4.3-3.5,7.8-7.8,7.8H124.4z M194.2,105.8c-10.6,0-19.3,8.6-19.3,19.3s8.6,19.3,19.3,19.3
-                  s19.3-8.6,19.3-19.3S204.9,105.8,194.2,105.8z M180.2,95.1c1.4,6.1,7,10.3,14,10.3s12.6-4.1,14-10.3l9.7-48.8
-                  c1.5-7-0.3-14.3-5-20.1c-4.3-5.4-10.6-8.6-16.8-8.6h-3.7c-6.2,0-12.5,3.2-16.8,8.6c-4.7,5.8-6.5,13.1-5,20.1L180.2,95.1z"/>
-                <path d="M263.9,19.7c0.4,0,0.8,0.3,0.8,0.8v219.5c0,0.4-0.3,0.8-0.8,0.8H124.4c-0.4,0-0.8-0.3-0.8-0.8v-32.5v-18.2l-15.1,4
-                  l-0.4-49.1l3.6-24l5.8-3.9l6.1-4.2v-7.4V20.4c0-0.4,0.3-0.8,0.8-0.8h47.5c-0.7,0.7-1.3,1.4-1.9,2.2c-6,7.4-8.3,16.9-6.4,25.9
-                  l9.6,48.6l0,0.1l0,0.1c0.7,3.1,2.1,5.9,4.1,8.3c-5.8,4.8-9.4,12.1-9.4,20.1c0,14.5,11.8,26.3,26.3,26.3
-                  c14.5,0,26.3-11.8,26.3-26.3c0-8.1-3.7-15.4-9.5-20.2c1.9-2.3,3.3-5.1,4-8.2l0-0.1l0-0.1l9.6-48.6c1.9-9-0.4-18.5-6.4-25.9
-                  c-0.6-0.8-1.2-1.5-1.9-2.2H263.9 M263.9,5.7H124.4c-8.1,0-14.8,6.6-14.8,14.8v84.3L98.8,112l-4.6,31.1l0.6,68.2l14.9-3.9v32.5
-                  c0,8.1,6.6,14.8,14.8,14.8h139.5c8.1,0,14.8-6.6,14.8-14.8V20.4C278.7,12.3,272.1,5.7,263.9,5.7L263.9,5.7z M194.2,98.4
-                  c-3.2,0-6.5-1.6-7.2-4.8l-9.6-48.7c-2.3-10.3,6.2-20.3,15-20.3h3.7c8.8,0,17.2,10.1,15,20.3l-9.6,48.7
-                  C200.6,96.8,197.4,98.4,194.2,98.4L194.2,98.4z M194.2,137.3c-6.8,0-12.3-5.5-12.3-12.3c0-6.8,5.5-12.3,12.3-12.3
-                  c6.8,0,12.3,5.5,12.3,12.3C206.5,131.8,201,137.3,194.2,137.3L194.2,137.3z"/>
-              </g>
-            </g>
-          </g>
-          <g id="Layer_4">
-            <path class="st0" d="M95,219c0,0,22-5.3,28.7-8.3s16-14,16-14L151,183c0,0,11-18,28.3-16.7c0.2,0,0.3,0,0.5,0
-              c9.7,0.9,25.3,10.2,23.1,19.6l-0.2,0.9c0,0.1,0,0.1,0,0.2L198,201l-4.3,11.3c0,0-11,23-29.7,48l-25.7,21.3l-46,30.3l-22,18.3
-              c0,0-6.7,8.3-19.7-2.7S16,293,16,293L1.3,277c0,0-4.7-7.7,3.7-14s17-17.2,17-17.2S44.7,226,47.7,197c0,0,6.7-33.9,7-42
-              c0.2-5.7,2.1-11.2,4-13.9c0.9-1.3,1.8-2.7,2.6-4c2.3-3.9,7.6-11.9,15.2-17c2.7-1.8,5.4-3.8,7.9-5.8L99.7,101"/>
-            <line class="st1" x1="29.8" y1="268.3" x2="42.5" y2="255.5"/>
-            <line class="st2" x1="31.8" y1="282.3" x2="44.5" y2="269.5"/>
-            <line class="st2" x1="44.5" y1="296" x2="57.3" y2="283.3"/>
-            <line class="st2" x1="58.2" y1="308.7" x2="71" y2="296"/>
-            <path class="st3" d="M37.2,232.5c0,0,21.2,40.1,70.1,68.8"/>
-            <g id="Layer_5">
-            </g>
-            <line class="st4" x1="105.6" y1="86" x2="105.6" y2="215"/>
-          </g>
-        </svg>
+        <warning-count-icon :warningCount="player.reprimand" />
       </div>
       <div class="show-detail">
         <svg
@@ -65,13 +23,20 @@
               c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
               c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z"/>
           </g>
-          </svg>
+        </svg>
       </div>
     </div>
     <div class="player-list__buttons flex">
+      <div class="show-role flex justify-center">
+        <div
+          class="card flex items-center justify-center"
+          :style="{ 'background-color': player.role === 'red' || player.role === 'sherif' ? '#f02828' : '#181818' }">
+          {{ player.role === 'sherif' ? 'Շ' : player.role === 'don' ? 'Դ' : '' }}
+        </div>
+      </div>
       <div
         class="player-list__button warning flex items-center justify-center"
-        @click="InkrementWarninig">
+        @click="InkrementWarninig(player)">
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +82,7 @@
       </div>
       <div
         class="player-list__button leave flex items-center justify-center"
-        @click="LeaveRoom">
+        @click="LeaveRoom(player)">
         <svg
           id="Layer_1"
           enable-background="new 0 0 511.126 511.126"
@@ -139,16 +104,35 @@
 
 <script>
 export default {
+  components: {
+    warningCountIcon: () => import('@/components/warningCount')
+  },
   props: ['player'],
-  data: () => ({
-    isShowDetail: false
-  }),
+  data() {
+    return {
+      isShowDetail: false,
+      socket: this.$store.getters['Game/GetSocket']
+    }
+  },
   methods: {
-    InkrementWarninig () {
-      console.log('Inkrement')
+    InkrementWarninig ({ nickname = '', id }) {
+      this.$dialog.confirm({ text: `Ցանկանու՞մ եք նկատողություն տալ ${nickname}-ին` })
+      .then(res => {
+        if (res) {
+          console.log(id)
+          this.socket.emit('inkrementWarning', id)
+          this.$dialog.alert({ text: 'ssss' })
+        }
+      })
     },
-    LeaveRoom () {
-      console.log('Leave')
+    LeaveRoom ({ nickname = '', id }) {
+      this.$dialog.confirm({ text: `Ցանկանու՞մ եք նկատողություն տալ ${nickname}-ին` })
+      .then(res => {
+        if (res) {
+          console.log(id)
+          this.$dialog.alert({ text: 's' })
+        }
+      })
     },
     ShowDetail () {
       this.isShowDetail = !this.isShowDetail
@@ -157,7 +141,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $border-color: #fff;
 $bg-color: #f0b128;
 
@@ -185,7 +169,8 @@ svg {
   transition: 0.4s ease;
 
   &.show {
-    height: auto;
+    height: 108px;
+    // height: auto;
   }
   &:not(:last-child) {
     margin-bottom: 20px;
@@ -199,33 +184,6 @@ svg {
     flex-basis: 50px;
     height: 30px;
     padding: 2px;
-
-    span {
-      position: absolute;
-      top: -4px;
-      left: 32px;
-      display: block;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background-color: $red;
-      color: #fff;
-      font-size: 9px;
-      font-weight: bold;
-      text-align: center;
-      line-height: 19px;
-    }
-    svg {
-      height: 100%;
-
-      .st0, .st1, .st2, .st3 {
-        stroke: #000;
-      }
-      .st4 { stroke: #fff; }
-      #Layer_2 path {
-        fill: #000;
-      }
-    }
   }
   .show-detail {
     flex-basis: 22px;
@@ -245,8 +203,21 @@ svg {
     height: 50px;
     margin-top: 10px;
 
-    .player-list__button {
+    .show-role {
       flex-basis: 50%;
+      
+      .card {
+        width: 40px;
+        height: 100%;
+        padding-top: 6px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 18px;
+        color: #fff;
+      }
+    }
+    .player-list__button {
+      flex-basis: 25%;
       margin: 0 6px;
       padding: 8px 0;
       border-width: 2px;

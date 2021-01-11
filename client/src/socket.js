@@ -3,8 +3,8 @@ import io from 'socket.io-client'
 import store from './store/'
 import router from './router'
 
-const socket = io('http://192.168.5.5:5000')     // my notebook
-// const socket = io('http://192.168.5.18:5000')       // PC
+// const socket = io('http://192.168.5.5:5000')     // my notebook
+const socket = io('http://192.168.5.24:5000')       // PC
 // const socket = io('http://192.168.1.204:5000')   // Home PC
 // const socket = io(window.location.origin)        // production
 
@@ -41,5 +41,12 @@ socket.on('playersCount', count => {
 socket.on('card', role => {
   store.commit('Game/SetRole', role)
 })
+
+socket.on('playerList', data => {
+  store.commit('Game/SetList', data)
+  console.log('players: ', data)
+})
+
+socket.on('inkrementWarning', data => store.commit('Game/SetWarningCount', data))
 
 socket.on('roomReadyClient', () => store.commit('Game/RoomReady'))

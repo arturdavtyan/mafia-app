@@ -6,6 +6,9 @@
     <template v-else>
       <!-- Confirm dialog -->
       <m-confirm />
+      
+      <!-- Alert dialog -->
+      <m-alert />
 
       <!-- Modal -->
       <m-modal
@@ -26,6 +29,8 @@
       <div
         v-if="NickName"
         class="content">
+        <!-- <div class="transparent top"></div>
+        <div class="transparent bottom"></div> -->
         <div class="content__inner">
           <router-view />
         </div>
@@ -41,7 +46,8 @@ export default {
     mHeader: () => import('@/components/header'),
     mChangeNickname: () => import('@/components/changeNickName'),
     mLoading: () => import('@/components/loading'),
-    mConfirm: () => import('@/components/dialog/confirm')
+    mConfirm: () => import('@/components/dialog/confirm'),
+    mAlert: () => import('@/components/dialog/alert')
   },
   data () {
     return {
@@ -88,18 +94,38 @@ export default {
   margin: 0 auto;
 
   .content {
+    // position: relative;
     width: 100%;
+    height: calc(100vh - 120px);
     margin-top: 50px;
     padding: $padding;
+    overflow: hidden;
 
+    // .transparent {
+    //   position: absolute;
+    //   left: 0;
+    //   z-index: 50;
+    //   width: 100%;
+    //   height: 20px;
+
+    //   &.top {
+    //     top: 20px;
+    //     background: linear-gradient(0deg, transparent 0%, #f3f3f320 40%, #f3f3f355 70%, #f3f3f3 100%);
+    //   }
+    //   &.bottom {
+    //     bottom: 20px;
+    //     background: linear-gradient(transparent 0%, #f3f3f320 40%, #f3f3f355 70%, #f3f3f3 100%);
+    //   }
+    // }
     .content__inner {
+      height: auto;
+      max-height: 100%;
       background: #000;
-      // padding: $padding;
       padding: 10px;
       border-radius: $radius;
-      // background-color: #1d0303;
       background-color: #f3f3f3;
       box-shadow: 0px 0 16px -2px #b2c265;
+      overflow: auto;
     }
   }
 }
