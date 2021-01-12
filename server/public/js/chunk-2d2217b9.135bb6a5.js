@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d2217b9"],{cb15:function(t,n,e){"use strict";e.r(n);var a=function(){var t=this,n=t.$createElement,e=t._self._c||n;return e("div",{staticClass:"new-room"})},c=[],o={data:function(){return{}},created:function(){this.$store.commit("Game/SetBackRoute",{name:"main"})}},u=o,i=e("2877"),r=Object(i["a"])(u,a,c,!1,null,null,null);n["default"]=r.exports}}]);
-//# sourceMappingURL=chunk-2d2217b9.135bb6a5.js.map

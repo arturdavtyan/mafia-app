@@ -19,10 +19,10 @@ const JoinPlayer = (id, nickname, room) => {
 const InkrementWarning = id => {
   const findedIndex = players.findIndex(player => player.id === id)
 
-  if (findedIndex === -1) return
+  if (findedIndex === -1) return {}
 
   players[findedIndex].reprimand += 1
-  return players[findedIndex].reprimand
+  return { count: players[findedIndex].reprimand, roomNumber: players[findedIndex].room }
 }
 
 // Get current player
