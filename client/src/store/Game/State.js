@@ -14,5 +14,6 @@ export default {
   CurrentPlayerCount: 0,
   IsReadyRoom: false,
   PlayerList: [],
-  WarningCount: 0
+  WarningCount: 0,
+  GameState: null
 }

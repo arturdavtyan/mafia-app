@@ -14,5 +14,6 @@ export default {
   GetRoomNumber (state) { return state.Room.number },
   IsReadyRoom (state) { return state.IsReadyRoom },
   GetList (state) { return state.PlayerList },
-  GetWarningCount (state) { return state.WarningCount }
+  GetWarningCount (state) { return state.WarningCount },
+  GetGameState (state) { return state.GameState }
 }

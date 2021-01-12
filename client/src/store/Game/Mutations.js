@@ -8,6 +8,8 @@ export default {
     state.MaxPlayers = 0
     state.CurrentPlayerCount = 0
     state.IsReadyRoom = false
+    state.PlayerList = [],
+    state.GameState = null
   },
   SetNickName (state, payload) { state.NickName = payload },
   SetBackRoute (state, payload) { state.BackRoute = payload },
@@ -20,5 +22,6 @@ export default {
   SetCurrentPlayerCount (state, payload) { state.CurrentPlayerCount = payload },
   RoomReady (state) { state.IsReadyRoom = true },
   SetList (state, payload) { state.PlayerList = payload },
-  SetWarningCount (state, payload) { state.WarningCount = payload }
+  SetWarningCount (state, payload) { state.WarningCount = payload },
+  SetGameState (state, payload) { state.GameState = payload }
 }

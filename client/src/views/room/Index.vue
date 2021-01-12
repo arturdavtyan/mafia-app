@@ -49,6 +49,21 @@ export default {
     },
     warningCount () {
       return this.$store.getters['Game/GetWarningCount']
+    },
+    // gameState () {
+    //   return this.$store.getters['Game/GetGameState']
+    // }
+  },
+  watch: {
+    '$store.state.Game.WarningCount': function() {
+      this.$dialog.alert({ text: 'Դուք ստանում եք նկատողություն' })
+    },
+    '$store.state.Game.GameState': function(gameState) {
+      if (!gameState) return
+      
+      const winner = gameState === 'red' ? 'կարմիրները' : 'սևերը'
+      const textMessage = `Խաղում հաղթեցին ${winner}`
+      this.$dialog.alert({ text: textMessage })
     }
   },
   created () {

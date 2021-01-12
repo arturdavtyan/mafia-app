@@ -9,7 +9,7 @@ const CreateRoom = (playerId, password, maxPlayer) => {
     number: generator(6, true),
     password,
     maxPlayer,
-    // admin: playerId,
+    admin: playerId,
     isReady: false
   }
 

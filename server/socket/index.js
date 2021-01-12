@@ -66,8 +66,12 @@ const listen = server => {
 
     // Inkrement warning
     socket.on('inkrementWarning', id => {
-      const count = InkrementWarning(id)
+      const { count, roomNumber } = InkrementWarning(id)
+
+      if (!count || !roomNumber) return
+
       socket.to(id).emit('inkrementWarning', count)
+      socket.emit('playerList', GetRoomPlayers(roomNumber))
     })
 
     // Player leave the room
@@ -89,9 +93,30 @@ const listen = server => {
       if (!leftPlayer) return
 
       const { player, total } = leftPlayer
-      
+      const room = GetRoomByNumber(player.room)
+
+      if (!room) return
+
+      const players = GetRoomPlayers(player.room)
+      const gameState = GameStateHendler(players)
+
+      socket.to(room.admin).emit('playerList', players)
       io.to(player.room).emit('playersCount', total)
       socket.leave(leftPlayer.room)
+      console.log(gameState)
+
+      if (gameState) socket.to(player.room).emit('gameState', gameState)
+    }
+    const GameStateHendler = list => {
+      if (!list.length) return false
+  
+      const blackPlayersCount = list.filter(p => p.role === 'black' || p.role === 'don').length
+      const redPlayersCount = list.length - blackPlayersCount
+      const dRed = redPlayersCount - blackPlayersCount
+  
+      if (blackPlayersCount === 0) return 'red'
+  
+      return dRed <= 0 ? 'black' : false
     }
   })
 }
