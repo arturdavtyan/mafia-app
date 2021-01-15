@@ -78,8 +78,8 @@ export default {
       this.bodyHeight = window.innerHeight
     },
     ClearLoading () {
-      // setTimeout(() => this.loading = false, 4400)
-      setTimeout(() => this.loading = false, 800)
+      setTimeout(() => this.loading = false, 4400)
+      // setTimeout(() => this.loading = false, 800)
     },
     RedirectToMain () {
       if (!this.NickName) this.$router.push({ name: 'main' }).catch(() => {})
