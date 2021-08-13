@@ -1,5 +1,7 @@
-import modal from './modal'
-import primaryInput from './primaryInput'
-import primaryButton from './primaryButton'
+import primaryButton from './buttons/primaryButton/PrimaryButton.vue'
+import Link from './buttons/link/Link.vue'
 
-export default [ modal, primaryInput, primaryButton ]
+export default [
+  primaryButton,
+  Link
+]

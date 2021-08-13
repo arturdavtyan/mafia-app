@@ -1,0 +1,14 @@
+<template>
+  <div class="cursor-pointer flex justify-center items-center w-12 h-12 border border-primary rounded-full">
+    <svg
+      width="10"
+      height="16"
+      viewBox="0 0 10 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M3.69451 15.1973L3.67404 8.938H0.996094V6.25546H3.67404V4.4671C3.67404 2.05353 5.16611 0.890381 7.31549 0.890381C8.34506 0.890381 9.22993 0.967164 9.4878 1.00148V3.5238L7.9971 3.52448C6.82815 3.52448 6.60181 4.0809 6.60181 4.89742V6.25546H9.92257L9.02993 8.938H6.6018V15.1973H3.69451Z"
+        fill="#FF6810"/>
+    </svg>
+  </div>
+</template>

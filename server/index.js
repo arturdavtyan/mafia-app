@@ -1,15 +1,10 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const app = express()
-const server = require('http').createServer(app)
 
 // Middleware
-app.use(bodyParser.json())
 app.use(cors())
-
-require('./socket').listen(server)
 
 // Handle production
 if (process.env.NODE_ENV === 'production') {
@@ -22,4 +17,4 @@ if (process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 80
 
-server.listen(port, () => console.log(`Server started on port: ${port}`))
+app.listen(port, () => console.log(`Server started on port: ${port}`))
