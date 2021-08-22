@@ -1,2 +1,38 @@
-@import './fonts';
-@import './tailwind.scss';
+// @font-face {
+//   font-family: Texturina;
+//   src: url(../fonts/Texturina.ttf) format('truetype');
+//   font-weight: normal;
+// }
+@font-face {
+  font-family: Armenian;
+  src: url(../fonts/ArTarumianKamar-Regular-8941.ttf) format('truetype');
+  font-weight: normal;
+}
+
+@import './variables';
+@import './utils.scss';
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Armenian, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+body {
+  // background-color: #220505;
+  background-color: #1d0404;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0px,
+    transparent 20px,
+    #330505 20px,
+    #1d0505 35px
+  );
+}
+
+// #3b0707 20px,
+// #220606 35px

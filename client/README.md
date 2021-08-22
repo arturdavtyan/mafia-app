@@ -1,4 +1,4 @@
-# hitmarker
+# mafia
 
 ## Project setup
 ```
